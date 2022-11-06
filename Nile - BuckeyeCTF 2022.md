@@ -127,6 +127,7 @@ contract Thing {
 ```
 Details about the code I used can be found in the Code section.
 The order of the functions to be called is as follows:
+
 0. The constructor calls the address of the Nile contract that is on the blockchain network, which should be done when the smart contract is deployed.
 1. `account()` to create an account. 
 2. `underflow()` calls `redeem(99)` which will call the fallback function. The fallback function is `receive() external payable` which calls `deleteAccount()` and `createEmptyAccount()`. 
