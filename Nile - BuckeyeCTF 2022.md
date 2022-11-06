@@ -176,5 +176,5 @@ require(result2, "Call has failed");
 Calling it in any other way gave me an out of gas but Contract Execution Completed error on the Etherscan blockchain network. Despite it saying that Contract Execution Completed, this did not work. Format found [here](https://ethereum.stackexchange.com/questions/84839/status-is-successful-but-got-internal-transaction-out-of-gas). `abi.encodeWithSignature()` found [here](https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract). There should be no spaces between the parameters and the parameters should use their full names (`uint256` instead of just `uint`)([found here](https://ethereum.stackexchange.com/questions/67572/abi-encodewithsignature-did-not-work)). 
 
 When running this smart contract on Remix, ensure that the methods in contract Nile are being called from contract Thing by checking the logs in the transaction details. Some of the functions in Nile `emit` events which will be output to the logs. Use this to ensure that the contract is actually calling another contract's function. 
-![[Example of Working Log.png|980]]
+![Example of Working Log.png](https://github.com/Sinkasha/buckeyeCTF-writeups/blob/main/Example%20of%20Working%20Log.png)
 *A `Thing.account()` call which emits an event for creating an account.*
