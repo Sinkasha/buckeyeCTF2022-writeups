@@ -78,7 +78,7 @@ I chose to run the smart contracts on [Remix](https://remix.ethereum.org). Note:
 
 Reading through the contract, we can see that we want to call the function `getFlag()`. In order to call `getFlag()` we need `accounts[msg.sender] == true` and `balance[msg.sender] > 1000`.  `redeem(amount)` can increase `balance[msg.sender]`, however, the amount we can redeem total must be smaller than `redeemable[msg.sender]`, which is set to 100 every time `createAccount()` is called, but we need 1000 tokens. 
 
-The solution here is to cause an **integer underflow** in `redeemable[msg.sender]` so that we can redeem an amount greater than 99 due to the underflow. 
+The solution here is to cause an **integer underflow** in `redeemable[msg.sender]` so that we can redeem an amount greater than 99 due to the underflow. This works because the Solidity version is 0.7.6 and in solidity versions before 0.8.0, math overflows do not revert by default ([found here](https://solidity-by-example.org/hacks/overflow/)).
 
 #### Integer Underflow
 In order to cause integer underflow, we will utilize Solidity's [**fallback function**](https://docs.soliditylang.org/en/v0.8.12/contracts.html#fallback-function). `msg.sender.call("")` calls the fallback function ([found here](https://ethereum.stackexchange.com/questions/42521/what-does-msg-sender-call-do-in-solidity)) which is called in the `redeem()` function. `msg.sender` points to the person or contract who is currently connecting to the contract ([found here](https://stackoverflow.com/questions/48562483/solidity-basics-what-msg-sender-stands-for)). So we can write another contract which calls the Nile contract's `redeem()` function which would then call the fallback function of the contract we write. 
