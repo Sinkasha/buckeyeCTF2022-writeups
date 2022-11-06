@@ -147,7 +147,7 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 	4. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section) and that each function call has a green checkmark, as shown below. 
 	![Remix Workspace 1.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%201.png)
 	5. Make sure to change the address back to the actual address instead of the local address when running it on the Goerli test network. 
-5. Run the netcat to get the token id and paste it into contract Thing.
+5. Run the netcat to get the token id and paste it into contract Thing (remember to pad it to 32 bytes).
 6. Deploy Thing to Injected Provider - Metamask. 
 7. Run the functions in the order given above, making sure to confirm the transaction on the crypto wallet and wait for the green checkmark by the function before running the next function. If everything is running correctly, the transactions should show up on the Etherscan blockchain network. You will need to spend some of the ~~fake~~ eth. 
 ![Remix Workspace with Metamask.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20with%20Metamask.png) ![Remix Workspace after Thing.flag().png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20after%20Thing.flag().png)
