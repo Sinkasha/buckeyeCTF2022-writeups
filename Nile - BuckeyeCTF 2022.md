@@ -1,12 +1,12 @@
 # Nile - BuckeyeCTF 2022
-### Introduction
+## Introduction
 Nile is a beginner misc. task in the 2022 BuckeyeCTF. The project description is as follows:
 
 I wrote my first smart contract on Ethereum, deployed onto the Görli testnet, you have got to check it out! To celebrate it's launch, I'm giving away free tokens, you just have to redeem your balance. Connect to the server to see the contract address.
 
 `nc -v nile.chall.pwnoh.io 13379`
 
-### Process
+## Process
 Running the netcat gives the following:
 ```
 Hello! The contract is running at 0x7217bd381C35dd9E1B8Fcbd74eaBac4847d936af on the Goerli Testnet.
@@ -80,7 +80,7 @@ Reading through the contract, we can see that we want to call the function `getF
 
 The solution here is to cause an **integer underflow** in `redeemable[msg.sender]` so that we can redeem an amount greater than 99 due to the underflow. This works because the Solidity version is 0.7.6 and in solidity versions before 0.8.0, math overflows do not revert by default ([found here](https://solidity-by-example.org/hacks/overflow/)).
 
-#### Integer Underflow
+### Integer Underflow
 In order to cause integer underflow, we will utilize Solidity's [**fallback function**](https://docs.soliditylang.org/en/v0.8.12/contracts.html#fallback-function). `msg.sender.call("")` calls the fallback function ([found here](https://ethereum.stackexchange.com/questions/42521/what-does-msg-sender-call-do-in-solidity)) which is called in the `redeem()` function. `msg.sender` points to the person or contract who is currently connecting to the contract ([found here](https://stackoverflow.com/questions/48562483/solidity-basics-what-msg-sender-stands-for)). So we can write another contract which calls the Nile contract's `redeem()` function which would then call the fallback function of the contract we write. 
 
 In the fallback function itself, we want to call `deleteAccount()` and then `createEmptyAccount()`. `deleteAccount()` sets `redeemable` to 0, and `createEmptyAccount()`, unlike `createAccount()`, does not initialize `redeemable` to anything. So, when `redeemable[msg.sender] -= amount;` is called, we would subtract some positive value from 0, resulting in integer underflow. We then need to write a couple other functions to call `redeem()` and `getFlag()`. 
@@ -135,7 +135,7 @@ The order of the functions to be called is as follows:
 
 After calling `getFlag()` with the token given by the netcat, return to the terminal, type `y`, and get the flag. 
 
-#### How to Run This (Remix & Metamask)
+### How to Run This (Remix & Metamask)
 1. Set up a crypto wallet (I used Metamask plugin). 
 2. Use a Goerli faucet ([here](https://goerlifaucet.com) or [here](https://goerli-faucet.pk910.de)) to give yourself some ~~fake~~ Eth.
 3. Import contract Thing. Compile it. 
@@ -159,7 +159,7 @@ Address: 0xf311CC7d5c950d5DF3664aBb1a53AB7cfd9D11F3
 8. Go back to the console and type `y` to get the flag. 
 ![Nile Console Output.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Nile%20Console%20Output.png)
 
-#### Code
+## Code
 This section is dedicated to Solidity / Remix things.
 
 Importing the contract and then calling the address in the constructor seemed to work better than other options such as:
