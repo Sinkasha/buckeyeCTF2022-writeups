@@ -142,14 +142,21 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 4. To test the code on VM servers:  
 	1. Import the Nile smart contract. 
 	2. Deploy the Nile smart contract to a VM server and copy its local address (which can be found under "Deployed Contracts"):
-	![Copy Local Address.png|](https://github.com/Sinkasha/buckeyeCTF-writeups/blob/main/Copy%20Local%20Address.png)
+	![Copy Local Address.png](https://github.com/Sinkasha/buckeyeCTF-writeups/blob/main/Copy%20Local%20Address.png)
 	3. Paste the local address into the constructor in contract Thing. 
-	4. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section). 
+	4. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section) and that each function call has a green checkmark, as shown below. 
+	![Remix Workspace 1.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%201.png)
 	5. Make sure to change the address back to the actual address instead of the local address when running it on the Goerli test network. 
 5. Run the netcat to get the token id and paste it into contract Thing.
 6. Deploy Thing to Injected Provider - Metamask. 
-7. Run the functions in the order given above, making sure to wait for the transaction to be confirmed before running the next function. If everything is running correctly, the transactions should show up on the Etherscan blockchain network. 
+7. Run the functions in the order given above, making sure to confirm the transaction on the crypto wallet and wait for the green checkmark by the function before running the next function. If everything is running correctly, the transactions should show up on the Etherscan blockchain network. You will need to spend some of the ~~fake~~ eth. 
+![Remix Workspace with Metamask.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20with%20Metamask.png) ![Remix Workspace after Thing.flag().png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20after%20Thing.flag().png)
+*Screenshots of my workspace. Top is the Metamask plugin + Remix workspace. Bottom is after running all four functions.* 
+After running all four functions, they should show up on the Etherscan network when pasting in the memory address of the deployed Thing contract in the search bar. 
+Address: 0xf311CC7d5c950d5DF3664aBb1a53AB7cfd9D11F3
+![Etherscan Screenshot.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Etherscan%20Screenshot.png)
 8. Go back to the console and type `y` to get the flag. 
+![Nile Console Output.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Nile%20Console%20Output.png)
 
 #### Code
 This section is dedicated to Solidity / Remix things.
