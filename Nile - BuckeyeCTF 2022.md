@@ -76,7 +76,7 @@ contract Nile {
 ```
 I chose to run the smart contracts on [Remix](https://remix.ethereum.org). Note: make sure to match the compiler version to the version called with `pragma solidity ^x.y.z;` at the top of the file. 
 
-Reading through the contract, we can see that we want to call the function `getFlag()`. In order to call `getFlag()` we need `accounts[msg.sender] == true` and `balance[msg.sender] > 1000`.  `redeem(amount)` can increase `balance[msg.sender]`, however, the amount we can redeem must be smaller than `redeemable[msg.sender]` and every time we redeem, that amount is subtracted from `redeemable[msg.sender]`. `redeemable[msg.sender]` is set to 100 every time `createAccount()` is called, but we need 1000 tokens. 
+Reading through the contract, we can see that we want to call the function `getFlag()`. In order to call `getFlag()` we need `accounts[msg.sender] == true` and `balance[msg.sender] > 1000`.  `redeem(amount)` can increase `balance[msg.sender]`, however, the amount we can redeem total must be smaller than `redeemable[msg.sender]`, which is set to 100 every time `createAccount()` is called, but we need 1000 tokens. 
 
 The solution here is to cause an **integer underflow** in `redeemable[msg.sender]` so that we can redeem an amount greater than 99 due to the underflow. 
 
