@@ -141,12 +141,12 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 2. Use a Goerli faucet ([here](https://goerlifaucet.com) or [here](https://goerli-faucet.pk910.de)) to give yourself some ~~fake~~ Eth.
 3. Import contract Thing. Compile it. 
 4. To test the code on VM servers:  
-	a. Import the Nile smart contract. 
-	b. Deploy the Nile smart contract to a VM server and copy its local address (which can be found under "Deployed Contracts"):
+	1. Import the Nile smart contract. 
+	2. Deploy the Nile smart contract to a VM server and copy its local address (which can be found under "Deployed Contracts"):
 	![[Copy Local Address.png|400]]
-	c. Paste the local address into the constructor in contract Thing. 
-	d. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section). 
-	e. Make sure to change the address back to the actual address instead of the local address when running it on the Goerli test network. 
+	3. Paste the local address into the constructor in contract Thing. 
+	4. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section). 
+	5. Make sure to change the address back to the actual address instead of the local address when running it on the Goerli test network. 
 5. Run the netcat to get the token id and paste it into contract Thing.
 6. Deploy Thing to Injected Provider - Metamask. 
 7. Run the functions in the order given above, making sure to wait for the transaction to be confirmed before running the next function. If everything is running correctly, the transactions should show up on the Etherscan blockchain network. 
