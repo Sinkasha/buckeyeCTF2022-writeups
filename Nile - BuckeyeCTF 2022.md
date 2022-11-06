@@ -143,7 +143,7 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 4. To test the code on VM servers:  
 	1. Import the Nile smart contract. 
 	2. Deploy the Nile smart contract to a VM server and copy its local address (which can be found under "Deployed Contracts"):
-	![[Copy Local Address.png|400]]
+	![Copy Local Address.png|](https://github.com/Sinkasha/buckeyeCTF-writeups/blob/main/Copy%20Local%20Address.png)
 	3. Paste the local address into the constructor in contract Thing. 
 	4. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section). 
 	5. Make sure to change the address back to the actual address instead of the local address when running it on the Goerli test network. 
