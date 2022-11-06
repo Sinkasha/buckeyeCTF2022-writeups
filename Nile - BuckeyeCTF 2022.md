@@ -1,4 +1,3 @@
-#ctf #writeup 
 # Nile - BuckeyeCTF 2022
 ### Introduction
 Nile is a beginner (why was this beginner?) misc. task in the 2022 BuckeyeCTF. The project description is as follows:
