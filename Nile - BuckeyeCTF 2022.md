@@ -155,18 +155,18 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 This section is dedicated to Solidity / Remix things.
 
 Importing the contract and then calling the address in the constructor seemed to work better than other options such as:
-```
+```Solidity
 address nile = 0x7217bd381C35dd9E1B8Fcbd74eaBac4847d936af;
 nile.call(abi.encodeWithSignature("function()",""));
 ```
 or creating a Nile object:
-```
+```Solidity
 Nile nile = Nile(0x7217bd381C35dd9E1B8Fcbd74eaBac4847d936af)
 nile.call(abi.encodeWithSignature("function()",""));
 ```
 
 Method calls from a different contract only worked for me with the following format: 
-```
+```Solidity
 (bool result, ) = address(nile).call(abi.encodeWithSignature("createAccount()",""));
 require(result, "Call has failed");
 (bool result2, ) = address(nile).call(abi.encodeWithSignature("redeem(uint256)",9999));
