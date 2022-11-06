@@ -152,6 +152,7 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 7. Run the functions in the order given above, making sure to confirm the transaction on the crypto wallet and wait for the green checkmark by the function before running the next function. If everything is running correctly, the transactions should show up on the Etherscan blockchain network. You will need to spend some of the ~~fake~~ eth. 
 ![Remix Workspace with Metamask.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20with%20Metamask.png) ![Remix Workspace after Thing.flag().png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20after%20Thing.flag().png)
 *Screenshots of my workspace. Top is the Metamask plugin + Remix workspace. Bottom is after running all four functions.* 
+
 After running all four functions, they should show up on the Etherscan network when pasting in the memory address of the deployed Thing contract in the search bar. 
 Address: 0xf311CC7d5c950d5DF3664aBb1a53AB7cfd9D11F3
 ![Etherscan Screenshot.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Etherscan%20Screenshot.png)
