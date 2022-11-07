@@ -150,7 +150,8 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 5. Run the netcat to get the token id and paste it into contract Thing (remember to pad it to 32 bytes).
 6. Deploy Thing to Injected Provider - Metamask. 
 7. Run the functions in the order given above, making sure to confirm the transaction on the crypto wallet and wait for the green checkmark by the function before running the next function. If everything is running correctly, the transactions should show up on the Etherscan blockchain network. You will need to spend some of the ~~fake~~ eth. 
-![[./Remix Workspace with Metamask.png](./Remix Workspace with Metamask.png)](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/2eb759facb5bf5b537d15df41a3c12280eff90a3/Nile/Remix%20Workspace%20with%20Metamask.png) ![Remix Workspace after Thing.flag().png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%20after%20Thing.flag().png)
+![[Remix Workspace with Metamask.png](./Remix Workspace with Metamask.png)](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/2eb759facb5bf5b537d15df41a3c12280eff90a3/Nile/Remix%20Workspace%20with%20Metamask.png) 
+![[Remix Workspace after Thing.flag().png](./Remix Workspace after Thing.flag().png)](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/74ce978b189ca63e710d10e7714c6c7c55c2c4eb/Nile/Remix%20Workspace%20after%20Thing.flag().png)
 *Screenshots of my workspace. Top is the Metamask plugin + Remix workspace. Bottom is after running all four functions.* 
 
 After running all four functions, they should show up on the Etherscan network when pasting in the memory address of the deployed Thing contract in the search bar. 
