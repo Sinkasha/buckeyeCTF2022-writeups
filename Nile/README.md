@@ -142,7 +142,7 @@ After calling `getFlag()` with the token given by the netcat, return to the term
 4. To test the code on VM servers:  
 	1. Import the Nile smart contract. 
 	2. Deploy the Nile smart contract to a VM server and copy its local address (which can be found under "Deployed Contracts"):
-	![Copy Local Address](../Nile/Copy Local Address.png)
+	![Copy Local Address](Nile/Copy Local Address.png)
 	3. Paste the local address into the constructor in contract Thing. 
 	4. Deploy Thing, run the functions. Check that each function call on Thing emits an event in logs (more on this in the Code section) and that each function call has a green checkmark, as shown below. 
 	![Remix Workspace 1.png](https://github.com/Sinkasha/buckeyeCTF2022-writeups/blob/main/Remix%20Workspace%201.png)
