@@ -13,6 +13,7 @@ Here is your token id: 0x48278be4c045a5daee6ee66d70621cc4
 Are you ready to receive your flag? (y/n)
 ```
 The given token id is different every time the netcat is run. The given address for the contract links to a page on the Ethernet Goerli Testnet Network [here](https://goerli.etherscan.io/address/0xdCAeeeB6b02A2E5FbAe956200f1b88784bE25500). This links to a smart contract, Nile, written in [Solidity](https://docs.soliditylang.org/en/v0.8.17/#):
+
 ```Solidity
 pragma solidity ^0.7.6;
 
@@ -170,7 +171,7 @@ contract A {
     }
 }
 ```
-![[Contract_A_on_Etherscan.png]]
+![Contract_A_on_Etherscan.png](./Contract_A_on_Etherscan.png)
 *Contract A on the Etherscan network*
 The function calls from 2 days 6 hours ago were the original successful calls made during the CTF. The first one was deployment of the contract. It is interesting to note that despite the error (`Although one or more Error Occurred [execution reverted] Contract Execution Completed`) when calling `step3()`(in block 7900103), the rest of the function calls on contract B were successful. 
 
@@ -220,12 +221,33 @@ contract B {
     }
 }
 ```
-![[Contract_B_on_Etherscan.png]]
+![Contract_B_on_Etherscan](./Contract_B_on_Etherscan.png)
 *Contract B on the Etherscan network*
 The function calls from 2 days 6 hours ago were the original successful calls. 
-![[Successful_getFlag().png]]
+![Successful_getFlag()](./Successful_getFlag().png)
 The transaction on Contract B for the function `pleaseWork()` which emits an event titled `GetFlag`. The given token id from the netcat can be seen in the Data section.
 
 After deploying the contracts, running steps 1 through 5 and calling `pleaseWork()`, I was able to get the flag in the netcat by typing `y`. 
 
-Refer to [[Nile - BuckeyeCTF 2022#Code]] for details about the code I used.
+## Code
+This section is dedicated to Solidity / Remix things. Taken directly from my writeup for [Nile](../Nile/README.md#Code), which was a similar Ethereum Goerli blockchain problem. 
+
+Importing the contract and then calling the address in the constructor seemed to work better than other options such as:
+```Solidity
+address nile = 0x7217bd381C35dd9E1B8Fcbd74eaBac4847d936af;
+nile.call(abi.encodeWithSignature("function()",""));
+```
+or creating a Nile object:
+```Solidity
+Nile nile = Nile(0x7217bd381C35dd9E1B8Fcbd74eaBac4847d936af)
+nile.call(abi.encodeWithSignature("function()",""));
+```
+
+Method calls from a different contract only worked for me with the following format: 
+```Solidity
+(bool result, ) = address(nile).call(abi.encodeWithSignature("createAccount()",""));
+require(result, "Call has failed");
+(bool result2, ) = address(nile).call(abi.encodeWithSignature("redeem(uint256)",9999));
+require(result2, "Call has failed");
+```
+Calling it in any other way gave me an out of gas but Contract Execution Completed error on the Etherscan blockchain network. Despite it saying that Contract Execution Completed, this did not work. Format found [here](https://ethereum.stackexchange.com/questions/84839/status-is-successful-but-got-internal-transaction-out-of-gas). `abi.encodeWithSignature()` found [here](https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract). There should be no spaces between the parameters and the parameters should use their full names (`uint256` instead of just `uint`)([found here](https://ethereum.stackexchange.com/questions/67572/abi-encodewithsignature-did-not-work)). 
