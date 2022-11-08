@@ -3,6 +3,7 @@
 Andes is a medium misc. task in the 2022 BuckeyeCTF. The project description is as follows:
 
 Sometimes the house wins. Sometimes you both win. *Note: the token must be right-padded to 64 bytes if using Remix and passing as a function parameter.*
+
 `nc -v nile.chall.pwnoh.io 13378`
 
 ## Process
@@ -131,6 +132,7 @@ flowchart LR
 	id1(Contract A) -->|calls| id2(Contract B) -->|calls| id3(Andes Contract)
 ```
 If the Andes Contract calls `tx.origin` it would return Contract A.
+
 If the Andes Contract calls `msg.sender` it would return Contract B. 
 
 So for `tx.origin != msg.sender` to be true, we need to write two contracts in the form of Contract A and Contract B as shown above. For `_canBeDesignator` to return true, we need to have Contract A call Contract B's constructor which will call `register()` and `designateOwner`  from Andes.
@@ -173,6 +175,7 @@ contract A {
 ```
 ![Contract_A_on_Etherscan.png](./Contract_A_on_Etherscan.png)
 *Contract A on the Etherscan network*
+
 The function calls from 2 days 6 hours ago were the original successful calls made during the CTF. The first one was deployment of the contract. It is interesting to note that despite the error (`Although one or more Error Occurred [execution reverted] Contract Execution Completed`) when calling `step3()`(in block 7900103), the rest of the function calls on contract B were successful. 
 
 Contract B (can be found on Etherscan network [here](https://goerli.etherscan.io/address/0xe56bd57dae4a1a1cb40a9c96503f7b2b0c68691c)):
@@ -223,6 +226,7 @@ contract B {
 ```
 ![Contract_B_on_Etherscan](./Contract_B_on_Etherscan.png)
 *Contract B on the Etherscan network*
+
 The function calls from 2 days 6 hours ago were the original successful calls. 
 ![Successful_getFlag()](./Successful_getFlag().png)
 The transaction on Contract B for the function `pleaseWork()` which emits an event titled `GetFlag`. The given token id from the netcat can be seen in the Data section.
